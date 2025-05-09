@@ -1,0 +1,39 @@
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { OrderEntity } from 'src/entities/order.entity';
+import { orderRequest, OrderService } from 'src/service/orders.service';
+import { UpdateResult } from 'typeorm';
+
+@Controller('orders')
+export class OrderController {
+  constructor(private readonly orderService: OrderService) {}
+
+  @Post('create')
+  createOrder(@Body() request: orderRequest): Promise<OrderEntity> {
+    return this.orderService.createOrder(request);
+  }
+
+  @Get('findById/:id')
+  findOrderById(@Param('id') id: number): Promise<OrderEntity | null> {
+    return this.orderService.findOrderById(id);
+  }
+
+  @Put('update/:id')
+  async updateOrder(
+    @Param('id') id: number,
+    @Body()
+    request: {
+      cusPhoneNumber?: string;
+      address?: string;
+    },
+  ): Promise<UpdateResult | null> {
+    const { cusPhoneNumber, address } = request;
+    if (!cusPhoneNumber && !address) {
+      return null;
+    }
+    const user = await this.orderService.findOrderById(id);
+    if (user === null) {
+      return null;
+    }
+    return this.orderService.updateOrder(id, request);
+  }
+}
