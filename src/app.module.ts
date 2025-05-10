@@ -1,21 +1,23 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-// import { MathModule } from './math/math.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-// import { UserEntity } from './entities/user.entity';
 import { MongooseModule } from '@nestjs/mongoose';
-// import { Cat, CatSchema } from './schema/cat.schema';
-import { CustomerEntity } from './entities/customer.entity';
-import { OrderEntity } from './entities/order.entity';
-import { ShipperEntity } from './entities/shipper.entity';
-import { CustomerController } from './controller/customers.controller';
-import { CustomerService } from './service/customers.service';
-import { ShipperService } from './service/shippers.service';
-import { OrderService } from './service/orders.service';
-import { ShipperController } from './controller/shippers.controller';
-import { OrderController } from './controller/orders.controller';
-
+import { CustomerEntity } from './customers/entity/customer.entity';
+import { OrderEntity } from './orders/entity/order.entity';
+import { ShipperEntity } from './shippers/entity/shipper.entity';
+import { CustomerController } from './customers/customers.controller';
+import { CustomerService } from './customers/customers.service';
+import { ShipperService } from './shippers/shippers.service';
+import { OrderService } from './orders/orders.service';
+import { ShipperController } from './shippers/shippers.controller';
+import { OrderController } from './orders/orders.controller';
+import { Product, ProductSchema } from './products/schema/product.schema';
+import { Feedback, FeedbackSchema } from './feedback/chema/feedback.schema';
+import { ProductService } from './products/product.service';
+import { ProductController } from './products/product.controller';
+import { FeedbackController } from './feedback/feedback.controller';
+import { FeedbackService } from './feedback/feedback.service';
 @Module({
   imports: [
     // // import MathModule thi moi sai duoc math sercvice
@@ -36,13 +38,26 @@ import { OrderController } from './controller/orders.controller';
       'mongodb://bootcamp:mysecretpassword@localhost:27019',
     ),
     // MongooseModule.forFeature([{ name: Cat.name, schema: CatSchema }]),
+    MongooseModule.forFeature([{ name: Product.name, schema: ProductSchema }]),
+    MongooseModule.forFeature([
+      { name: Feedback.name, schema: FeedbackSchema },
+    ]),
   ],
   controllers: [
     AppController,
     CustomerController,
     OrderController,
     ShipperController,
+    ProductController,
+    FeedbackController,
   ],
-  providers: [AppService, CustomerService, OrderService, ShipperService],
+  providers: [
+    AppService,
+    CustomerService,
+    OrderService,
+    ShipperService,
+    ProductService,
+    FeedbackService,
+  ],
 })
 export class AppModule {}

@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { CustomerEntity } from 'src/entities/customer.entity';
+import { CustomerEntity } from 'src/customers/entity/customer.entity';
 import {
   customerRequest,
   CustomerService,
-} from 'src/service/customers.service';
+} from 'src/customers/customers.service';
 import { UpdateResult } from 'typeorm';
 
 @Controller('customers')

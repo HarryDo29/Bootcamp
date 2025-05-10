@@ -1,6 +1,6 @@
 import { Body, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ShipperEntity } from 'src/entities/shipper.entity';
+import { ShipperEntity } from 'src/shippers/entity/shipper.entity';
 import { Repository, UpdateResult } from 'typeorm';
 
 @Injectable()
