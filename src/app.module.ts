@@ -13,7 +13,7 @@ import { OrderService } from './orders/orders.service';
 import { ShipperController } from './shippers/shippers.controller';
 import { OrderController } from './orders/orders.controller';
 import { Product, ProductSchema } from './products/schema/product.schema';
-import { Feedback, FeedbackSchema } from './feedback/chema/feedback.schema';
+import { Feedback, FeedbackSchema } from './feedback/schema/feedback.schema';
 import { ProductService } from './products/product.service';
 import { ProductController } from './products/product.controller';
 import { FeedbackController } from './feedback/feedback.controller';
