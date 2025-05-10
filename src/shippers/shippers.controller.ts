@@ -1,7 +1,8 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { ShipperEntity } from 'src/shippers/entity/shipper.entity';
-import { shipperRequest, ShipperService } from 'src/shippers/shippers.service';
+import { ShipperService } from 'src/shippers/shippers.service';
 import { UpdateResult } from 'typeorm';
+import { shipperRequest } from './shipper.dto';
 
 @Controller('shippers')
 export class ShipperController {

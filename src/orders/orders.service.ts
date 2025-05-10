@@ -2,6 +2,7 @@ import { Body, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { OrderEntity } from 'src/orders/entity/order.entity';
 import { Repository, UpdateResult } from 'typeorm';
+import { orderRequest } from './order.dto';
 
 @Injectable()
 export class OrderService {
@@ -31,13 +32,4 @@ export class OrderService {
     }
     return await this.orderRepository.update(id, request);
   }
-}
-
-export interface orderRequest {
-  orderName: string;
-  weight: string;
-  isArrive: boolean;
-  cusPhoneNumber: string;
-  address: string;
-  orderDate: Date;
 }

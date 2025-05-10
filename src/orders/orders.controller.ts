@@ -1,7 +1,8 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { OrderEntity } from 'src/orders/entity/order.entity';
-import { orderRequest, OrderService } from 'src/orders/orders.service';
+import { OrderService } from 'src/orders/orders.service';
 import { UpdateResult } from 'typeorm';
+import { orderRequest } from './order.dto';
 
 @Controller('orders')
 export class OrderController {

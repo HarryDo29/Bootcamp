@@ -1,10 +1,8 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { UpdateWriteOpResult } from 'mongoose';
 import { Feedback } from 'src/feedback/chema/feedback.schema';
-import {
-  feedbackRequest,
-  FeedbackService,
-} from 'src/feedback/feedback.service';
+import { FeedbackService } from 'src/feedback/feedback.service';
+import { feedbackRequest } from './feedback.dto';
 
 @Controller('feedbacks')
 export class FeedbackController {

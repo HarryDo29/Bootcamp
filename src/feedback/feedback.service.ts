@@ -2,6 +2,7 @@ import { Body, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, UpdateWriteOpResult } from 'mongoose';
 import { Feedback } from 'src/feedback/chema/feedback.schema';
+import { feedbackRequest } from './feedback.dto';
 
 @Injectable()
 export class FeedbackService {
@@ -37,10 +38,4 @@ export class FeedbackService {
       request,
     );
   }
-}
-
-export interface feedbackRequest {
-  productId: string;
-  userId: string;
-  feedback: string;
 }

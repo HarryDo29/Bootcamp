@@ -2,6 +2,7 @@ import { Body, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, UpdateWriteOpResult } from 'mongoose';
 import { Product } from 'src/products/schema/product.schema';
+import { productRequest } from './product.dto';
 
 @Injectable()
 export class ProductService {
@@ -39,11 +40,4 @@ export class ProductService {
     }
     return await this.productModel.updateOne({ productId: productId }, request);
   }
-}
-
-export interface productRequest {
-  name: string;
-  price: number;
-  description: string;
-  category: string;
 }

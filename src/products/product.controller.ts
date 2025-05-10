@@ -1,15 +1,8 @@
-import {
-  Body,
-  Controller,
-  Get,
-  NotFoundException,
-  Param,
-  Post,
-  Put,
-} from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { UpdateWriteOpResult } from 'mongoose';
 import { Product } from 'src/products/schema/product.schema';
-import { productRequest, ProductService } from 'src/products/product.service';
+import { ProductService } from 'src/products/product.service';
+import { productRequest } from './product.dto';
 
 @Controller('products')
 export class ProductController {

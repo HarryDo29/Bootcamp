@@ -2,6 +2,7 @@ import { Body, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ShipperEntity } from 'src/shippers/entity/shipper.entity';
 import { Repository, UpdateResult } from 'typeorm';
+import { shipperRequest } from './shipper.dto';
 
 @Injectable()
 export class ShipperService {
@@ -47,9 +48,4 @@ export class ShipperService {
     }
     return await this.shipperRepository.update(id, request);
   }
-}
-
-export interface shipperRequest {
-  shipperName: string;
-  shipperPhoneNumber: string;
 }

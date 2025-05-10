@@ -2,6 +2,7 @@ import { Body, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CustomerEntity } from 'src/customers/entity/customer.entity';
 import { Repository, UpdateResult } from 'typeorm';
+import { customerRequest } from './customer.dto';
 
 @Injectable()
 export class CustomerService {
@@ -40,12 +41,4 @@ export class CustomerService {
     }
     return await this.cusRepository.update(id, request);
   }
-}
-
-export interface customerRequest {
-  firstName: string;
-  lastName: string;
-  isActive?: boolean;
-  phoneNumber: string;
-  address: string;
 }

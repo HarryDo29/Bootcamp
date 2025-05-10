@@ -1,10 +1,8 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { CustomerEntity } from 'src/customers/entity/customer.entity';
-import {
-  customerRequest,
-  CustomerService,
-} from 'src/customers/customers.service';
+import { CustomerService } from 'src/customers/customers.service';
 import { UpdateResult } from 'typeorm';
+import { customerRequest } from './customer.dto';
 
 @Controller('customers')
 export class CustomerController {
