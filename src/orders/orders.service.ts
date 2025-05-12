@@ -15,12 +15,12 @@ export class OrderService {
     return await this.orderRepository.save(request);
   }
 
-  async findOrderById(id: number): Promise<OrderEntity | null> {
+  async findOrderById(id: string): Promise<OrderEntity | null> {
     return await this.orderRepository.findOne({ where: { order_id: id } });
   }
 
   async updateOrder(
-    id: number,
+    id: string,
     request: {
       cusPhoneNumber?: string;
       address?: string;

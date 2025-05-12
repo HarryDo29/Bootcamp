@@ -14,23 +14,23 @@ export class ShipperController {
   }
 
   @Get('findById/:id')
-  findShipperById(@Param('id') id: number): Promise<ShipperEntity | null> {
+  findShipperById(@Param('id') id: string): Promise<ShipperEntity | null> {
     return this.shipperService.findShipperById(id);
   }
 
   @Put('setWorking/:id')
-  setWorkingShipper(@Param('id') id: number): Promise<UpdateResult | null> {
+  setWorkingShipper(@Param('id') id: string): Promise<UpdateResult | null> {
     return this.shipperService.setWorkingShipper(id);
   }
 
   @Put('setNotWorking/:id')
-  setNotWorkingShipper(@Param('id') id: number): Promise<UpdateResult | null> {
+  setNotWorkingShipper(@Param('id') id: string): Promise<UpdateResult | null> {
     return this.shipperService.setNotWorkingShipper(id);
   }
 
   @Put('update/:id')
   async updateShipper(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Body()
     request: {
       shipperName?: string;

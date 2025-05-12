@@ -15,11 +15,11 @@ export class ShipperService {
     return await this.shipperRepository.save(request);
   }
 
-  async findShipperById(id: number): Promise<ShipperEntity | null> {
+  async findShipperById(id: string): Promise<ShipperEntity | null> {
     return await this.shipperRepository.findOne({ where: { shipperId: id } });
   }
 
-  async setWorkingShipper(id: number): Promise<UpdateResult | null> {
+  async setWorkingShipper(id: string): Promise<UpdateResult | null> {
     const shipper = await this.findShipperById(id);
     if (!shipper) {
       return null;
@@ -27,7 +27,7 @@ export class ShipperService {
     return await this.shipperRepository.update(id, { isWorking: true });
   }
 
-  async setNotWorkingShipper(id: number): Promise<UpdateResult | null> {
+  async setNotWorkingShipper(id: string): Promise<UpdateResult | null> {
     const shipper = await this.findShipperById(id);
     if (!shipper) {
       return null;
@@ -36,7 +36,7 @@ export class ShipperService {
   }
 
   async updateShipper(
-    id: number,
+    id: string,
     request: {
       shipperName?: string;
       shipperPhoneNumber?: string;

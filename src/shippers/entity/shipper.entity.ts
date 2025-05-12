@@ -4,6 +4,7 @@ import {
   IsPhoneNumber,
   IsString,
   Length,
+  Matches,
   MaxLength,
   MinLength,
 } from 'class-validator';
@@ -11,9 +12,11 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class ShipperEntity {
-  @IsNumber()
+  @IsString()
+  @Length(6, 6)
+  @Matches('^SHP-[0-9]{6}$')
   @PrimaryGeneratedColumn()
-  shipperId: number;
+  shipperId: string;
 
   @IsString()
   @MinLength(3)

@@ -19,13 +19,13 @@ export class CustomerController {
   }
 
   @Get('findById/:id')
-  findCustomerById(@Param('id') id: number): Promise<CustomerEntity | null> {
+  findCustomerById(@Param('id') id: string): Promise<CustomerEntity | null> {
     return this.cusService.findCustomerById(id);
   }
 
   @Put('update/:id')
   updateCustomer(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Body()
     request: {
       firstName?: string;

@@ -21,12 +21,12 @@ export class CustomerService {
     return await this.cusRepository.find();
   }
 
-  async findCustomerById(id: number): Promise<CustomerEntity | null> {
+  async findCustomerById(id: string): Promise<CustomerEntity | null> {
     return await this.cusRepository.findOne({ where: { id } });
   }
 
   async updateCustomer(
-    id: number,
+    id: string,
     request: {
       firstName?: string;
       lastName?: string;

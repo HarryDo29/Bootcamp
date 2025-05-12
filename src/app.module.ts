@@ -18,10 +18,12 @@ import { ProductService } from './products/product.service';
 import { ProductController } from './products/product.controller';
 import { FeedbackController } from './feedback/feedback.controller';
 import { FeedbackService } from './feedback/feedback.service';
+import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
-    // // import MathModule thi moi sai duoc math sercvice
-    // MathModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     // import db postgres nay vao thi moi sd duoc database
     TypeOrmModule.forRoot({
       type: 'postgres',

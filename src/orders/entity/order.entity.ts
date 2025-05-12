@@ -5,6 +5,7 @@ import {
   IsPhoneNumber,
   IsString,
   Length,
+  Matches,
   Max,
   MaxLength,
   Min,
@@ -14,8 +15,11 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class OrderEntity {
+  @IsString()
+  @Length(6, 6)
+  @Matches('^ORD-[0-9]{6}$')
   @PrimaryGeneratedColumn()
-  order_id: number;
+  order_id: string;
 
   @IsString()
   @MinLength(3)
