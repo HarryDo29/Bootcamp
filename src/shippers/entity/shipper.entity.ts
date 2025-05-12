@@ -12,11 +12,8 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class ShipperEntity {
-  @IsString()
-  @Length(6, 6)
-  @Matches('^SHP-[0-9]{6}$')
   @PrimaryGeneratedColumn()
-  shipperId: string;
+  shipper_id: number;
 
   @IsString()
   @MinLength(3)

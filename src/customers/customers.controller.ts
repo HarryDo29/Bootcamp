@@ -1,15 +1,31 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseInterceptors,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { CustomerEntity } from 'src/customers/entity/customer.entity';
 import { CustomerService } from 'src/customers/customers.service';
 import { UpdateResult } from 'typeorm';
-import { customerRequest } from './customer.dto';
+import { CustomerRequest, CustomerUpdateRequest } from './customer.dto';
+import { LoggingInterceptor } from '../interceptors/logging.interceptor';
+import { TransformInterceptor } from '../interceptors/transform.interceptor';
 
 @Controller('customers')
+@UseInterceptors(LoggingInterceptor)
+@UseInterceptors(TransformInterceptor)
 export class CustomerController {
   constructor(private readonly cusService: CustomerService) {}
 
   @Post('create')
-  createCustomer(@Body() request: customerRequest): Promise<CustomerEntity> {
+  async createCustomer(
+    @Body(new ValidationPipe()) request: CustomerRequest,
+  ): Promise<CustomerEntity> {
     return this.cusService.createCustomer(request);
   }
 
@@ -26,14 +42,7 @@ export class CustomerController {
   @Put('update/:id')
   updateCustomer(
     @Param('id') id: string,
-    @Body()
-    request: {
-      firstName?: string;
-      lastName?: string;
-      isActive?: boolean;
-      phoneNumber?: string;
-      address?: string;
-    },
+    @Body(new ValidationPipe()) request: CustomerUpdateRequest,
   ): Promise<UpdateResult | null> {
     return this.cusService.updateCustomer(id, request);
   }

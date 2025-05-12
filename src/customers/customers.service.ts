@@ -2,7 +2,7 @@ import { Body, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CustomerEntity } from 'src/customers/entity/customer.entity';
 import { Repository, UpdateResult } from 'typeorm';
-import { customerRequest } from './customer.dto';
+import { CustomerRequest, CustomerUpdateRequest } from './customer.dto';
 
 @Injectable()
 export class CustomerService {
@@ -12,7 +12,7 @@ export class CustomerService {
   ) {}
 
   async createCustomer(
-    @Body() request: customerRequest,
+    @Body() request: CustomerRequest,
   ): Promise<CustomerEntity> {
     return await this.cusRepository.save(request);
   }
@@ -22,18 +22,12 @@ export class CustomerService {
   }
 
   async findCustomerById(id: string): Promise<CustomerEntity | null> {
-    return await this.cusRepository.findOne({ where: { id } });
+    return await this.cusRepository.findOne({ where: { cus_id: id } });
   }
 
   async updateCustomer(
     id: string,
-    request: {
-      firstName?: string;
-      lastName?: string;
-      isActive?: boolean;
-      phoneNumber?: string;
-      address?: string;
-    },
+    request: CustomerUpdateRequest,
   ): Promise<UpdateResult | null> {
     const customer = await this.findCustomerById(id);
     if (!customer) {

@@ -14,13 +14,13 @@ export class OrderController {
   }
 
   @Get('findById/:id')
-  findOrderById(@Param('id') id: string): Promise<OrderEntity | null> {
+  findOrderById(@Param('id') id: number): Promise<OrderEntity | null> {
     return this.orderService.findOrderById(id);
   }
 
   @Put('update/:id')
   async updateOrder(
-    @Param('id') id: string,
+    @Param('id') id: number,
     @Body()
     request: {
       cusPhoneNumber?: string;
