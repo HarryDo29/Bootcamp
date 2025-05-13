@@ -31,13 +31,13 @@ export class TransformInterceptor<T>
           data,
         }),
       ),
-      catchError((error) => {
-        return of({
-          status: error.status,
-          message: error.response.message,
-          error: error.response.error,
-        });
-      }),
+      // catchError((error) => {
+      //   return of({
+      //     status: error.status,
+      //     message: error.response.message,
+      //     error: error.response.error,
+      //   });
+      // }),
     );
   }
 }

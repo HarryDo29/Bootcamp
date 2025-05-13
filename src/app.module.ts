@@ -20,6 +20,7 @@ import { FeedbackController } from './feedback/feedback.controller';
 import { FeedbackService } from './feedback/feedback.service';
 import { ConfigModule } from '@nestjs/config';
 import { APP_PIPE } from '@nestjs/core';
+import { JwtModule } from '@nestjs/jwt';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -45,6 +46,12 @@ import { APP_PIPE } from '@nestjs/core';
     MongooseModule.forFeature([
       { name: Feedback.name, schema: FeedbackSchema },
     ]),
+    JwtModule.register({
+      secret: 'SECRET_PASS',
+      signOptions: {
+        expiresIn: '1h',
+      },
+    }),
   ],
   controllers: [
     AppController,

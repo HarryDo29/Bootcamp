@@ -5,6 +5,7 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
   UseInterceptors,
   UsePipes,
   ValidationPipe,
@@ -15,6 +16,8 @@ import { UpdateResult } from 'typeorm';
 import { CustomerRequest, CustomerUpdateRequest } from './customer.dto';
 import { LoggingInterceptor } from '../interceptors/logging.interceptor';
 import { TransformInterceptor } from '../interceptors/transform.interceptor';
+import { JwtGaurd } from 'src/guard/jwt.gaurd';
+import { IsStrongPassword } from 'class-validator';
 
 @Controller('customers')
 @UseInterceptors(LoggingInterceptor)
@@ -29,6 +32,7 @@ export class CustomerController {
     return this.cusService.createCustomer(request);
   }
 
+  @UseGuards(JwtGaurd)
   @Get('findAll')
   findAllCustomer(): Promise<CustomerEntity[]> {
     return this.cusService.findAllCustomer();
@@ -45,5 +49,12 @@ export class CustomerController {
     @Body(new ValidationPipe()) request: CustomerUpdateRequest,
   ): Promise<UpdateResult | null> {
     return this.cusService.updateCustomer(id, request);
+  }
+
+  @Post('sign-in')
+  sign_in(
+    @Body() request: { cus_id: string; password: string },
+  ): Promise<string | null> {
+    return this.cusService.sign_in(request);
   }
 }
