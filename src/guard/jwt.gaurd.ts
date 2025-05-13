@@ -4,7 +4,6 @@ import {
   ExecutionContext,
   UnauthorizedException,
 } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
 import * as jwt from 'jsonwebtoken';
 
 @Injectable()
@@ -22,6 +21,7 @@ export class JwtGaurd implements CanActivate {
     if (token[0] !== 'Bearer') {
       throw new UnauthorizedException('No token provided 2');
     }
+    // verify token
     try {
       const payload = jwt.verify(token[1], 'SECRET_PASSWORD');
       request.user = payload;

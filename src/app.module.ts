@@ -21,6 +21,13 @@ import { FeedbackService } from './feedback/feedback.service';
 import { ConfigModule } from '@nestjs/config';
 import { APP_PIPE } from '@nestjs/core';
 import { JwtModule } from '@nestjs/jwt';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
+import { join } from 'path';
+import { GraphqlDemoModule } from './graphql-demo/graphql-demo.module';
+
+// import { GraphqlDemoResolver } from './graphql-demo/graphql-demo.resolver';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -52,6 +59,13 @@ import { JwtModule } from '@nestjs/jwt';
         expiresIn: '1h',
       },
     }),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      playground: false,
+      plugins: [ApolloServerPluginLandingPageLocalDefault()],
+    }),
+    GraphqlDemoModule,
   ],
   controllers: [
     AppController,
@@ -68,10 +82,10 @@ import { JwtModule } from '@nestjs/jwt';
     ShipperService,
     ProductService,
     FeedbackService,
-    {
-      provide: APP_PIPE,
-      useClass: ValidationPipe,
-    },
+    // {
+    //   provide: APP_PIPE,
+    //   useClass: ValidationPipe,
+    // },
   ],
 })
 export class AppModule {}

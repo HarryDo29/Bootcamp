@@ -1,0 +1,23 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Product {
+  productId: ID!
+  name: String!
+  price: Float!
+  description: String!
+  category: String!
+  is_active: Boolean!
+}
+
+type Author {
+  id: Int!
+  firstName: String
+  lastName: String
+}
+
+type Query {
+  author: Author!
+  findProduct: [Product!]!
+}

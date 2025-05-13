@@ -47,6 +47,7 @@ export class CustomerService {
     const customer = await this.findCustomerById(cus_id);
 
     if (customer && password === '1234567') {
+      // get token
       return await jwt.sign({ cus_id }, 'SECRET_PASSWORD', {
         expiresIn: '1H',
       });
