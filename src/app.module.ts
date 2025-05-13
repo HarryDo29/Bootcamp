@@ -26,6 +26,8 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { join } from 'path';
 import { GraphqlDemoModule } from './graphql-demo/graphql-demo.module';
+import { Passport } from 'passport';
+import { PassportModule } from './passport/passport.module';
 
 // import { GraphqlDemoResolver } from './graphql-demo/graphql-demo.resolver';
 @Module({
@@ -66,6 +68,7 @@ import { GraphqlDemoModule } from './graphql-demo/graphql-demo.module';
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
     GraphqlDemoModule,
+    PassportModule,
   ],
   controllers: [
     AppController,

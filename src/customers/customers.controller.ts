@@ -16,8 +16,7 @@ import { UpdateResult } from 'typeorm';
 import { CustomerRequest, CustomerUpdateRequest } from './customer.dto';
 import { LoggingInterceptor } from '../interceptors/logging.interceptor';
 import { TransformInterceptor } from '../interceptors/transform.interceptor';
-import { JwtGaurd } from 'src/guard/jwt.gaurd';
-import { IsStrongPassword } from 'class-validator';
+import { JwtAuthGuard } from 'src/passport/jwt.-auth.gaurd';
 
 @Controller('customers')
 @UseInterceptors(LoggingInterceptor)
@@ -32,7 +31,7 @@ export class CustomerController {
     return this.cusService.createCustomer(request);
   }
 
-  @UseGuards(JwtGaurd)
+  @UseGuards(JwtAuthGuard)
   @Get('findAll')
   findAllCustomer(): Promise<CustomerEntity[]> {
     return this.cusService.findAllCustomer();
